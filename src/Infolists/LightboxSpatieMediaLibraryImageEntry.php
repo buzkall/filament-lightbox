@@ -6,6 +6,7 @@ use Filament\Infolists\ComponentContainer;
 use Njxqlus\Filament\Components\GLightBox;
 use Njxqlus\Filament\Components\HasGLightBox;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Filament\Infolists\Components\TextEntry;
 
 class LightboxSpatieMediaLibraryImageEntry extends \Filament\Infolists\Components\SpatieMediaLibraryImageEntry implements HasGLightBox
 {
