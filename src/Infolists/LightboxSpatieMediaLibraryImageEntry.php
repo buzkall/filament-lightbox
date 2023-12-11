@@ -32,8 +32,14 @@ class LightboxSpatieMediaLibraryImageEntry extends \Filament\Infolists\Component
             );
     }
 
-    protected function makeLightboxEntryFromMedia(Media $media): LightboxImageEntry
+    protected function makeLightboxEntryFromMedia(Media $media): LightboxImageEntry|TextEntry
     {
+        if (! $media->hasGeneratedConversion($this->getConversion()) && $media->mime_type !== 'application/pdf') {
+                return TextEntry::make($media)
+                    ->label(fn() => new HtmlString('<a href="' . $media->getFullUrl() . '" target="_blank" class="text-underline">' .
+                        $media->file_name . '</a>'));
+        }
+
         $entry = LightboxImageEntry::make($media->uuid)
             ->hiddenLabel();
 
@@ -73,9 +79,6 @@ class LightboxSpatieMediaLibraryImageEntry extends \Filament\Infolists\Component
 
         if ($this->getSlideWidth()) {
             $entry->slideWidth($this->getSlideWidth());
-        }
-        if ($this->getSlideHeight()) {
-            $entry->slideHeight($this->getSlideHeight());
         }
         if ($this->getSlideZoomable()) {
             $entry->slideZoomable($this->getSlideZoomable());
