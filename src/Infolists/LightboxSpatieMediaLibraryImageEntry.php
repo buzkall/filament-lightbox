@@ -36,7 +36,7 @@ class LightboxSpatieMediaLibraryImageEntry extends \Filament\Infolists\Component
     {
         if (! $media->hasGeneratedConversion($this->getConversion()) && $media->mime_type !== 'application/pdf') {
                 return TextEntry::make($media)
-                    ->label(fn() => new HtmlString('<a href="' . $media->getFullUrl() . '" target="_blank" class="text-underline">' .
+                    ->label(fn() => new HtmlString('<a href="' . $media->getFullUrl() . '" target="_blank" class="underline">' .
                         $media->file_name . '</a>'));
         }
 
